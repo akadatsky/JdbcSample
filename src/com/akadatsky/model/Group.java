@@ -32,17 +32,16 @@ public class Group {
         return users;
     }
 
+    public void addUser(User user) {
+        users.add(user);
+    }
+
     @Override
     public String toString() {
         return "Group{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 ", users=" + users +
                 '}';
-    }
-
-    public void addUser(User user) {
-        users.add(user);
     }
 
 }

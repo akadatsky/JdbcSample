@@ -109,4 +109,27 @@ public class UserDao {
         return users;
     }
 
+    /*
+        SELECT column-list
+        FROM table_name
+        [WHERE condition]
+        [ORDER BY column1, column2, .. columnN] [ASC | DESC];
+     */
+    public List<User> getUsersByAge(int from, int to) throws SQLException {
+        List<User> users = new ArrayList<>();
+        try (Statement statement = connection.createStatement()) {
+            String request = String.format("SELECT * FROM users WHERE age >= '%s' AND age <= '%s' ORDER BY age, name ASC;", from, to);
+            ResultSet resultSet = statement.executeQuery(request);
+            while (resultSet.next()) {
+                String id = resultSet.getString("_id");
+                String groupId = resultSet.getString("group_id");
+                String name = resultSet.getString("name");
+                int age = resultSet.getInt("age");
+                users.add(new User(id, name, age, groupId));
+            }
+        }
+        return users;
+    }
+
+
 }
