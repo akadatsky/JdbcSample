@@ -32,7 +32,7 @@ public class UserDao {
     private void maybeCreateUsersTable() throws SQLException {
         try (Statement statement = connection.createStatement()) {
             statement.execute("CREATE TABLE IF NOT EXISTS groups (\n" +
-                    "_id varchar(100) PRIMARY KEY,\n" +
+                    "_id uuid PRIMARY KEY,\n" +
                     "name varchar(100)\n" +
                     ");");
         }
@@ -41,8 +41,8 @@ public class UserDao {
     private void maybeCreateGroupsTable() throws SQLException {
         try (Statement statement = connection.createStatement()) {
             statement.execute("CREATE TABLE IF NOT EXISTS users (\n" +
-                    "_id varchar(100) PRIMARY KEY,\n" +
-                    "group_id varchar(100),\n" +
+                    "_id uuid PRIMARY KEY,\n" +
+                    "group_id uuid,\n" +
                     "name varchar(100),\n" +
                     "age int\n" +
                     ");");
